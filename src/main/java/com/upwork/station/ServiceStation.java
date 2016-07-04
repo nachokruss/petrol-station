@@ -119,20 +119,22 @@ public class ServiceStation {
 		Map<Pump, List<Transaction>> transactionsPerPump = kiosk.getTransactionPerPump();
 		if (transactionsPerPump.size() > 0) {
 			for (Map.Entry<Pump, List<Transaction>> entry : transactionsPerPump.entrySet()) {
-				Pump pump = entry.getKey();
-				List<Transaction> transactions = entry.getValue();
-				System.out.println("A total of " + transactions.size() + " transactions were made on Pump Number: "
-						+ pump.getId());
-				int transactionNumber = 0;
-				for (Transaction transaction : transactions) {
-					transactionNumber++;
-					System.out.println("Transaction Number: " + transactionNumber);
-					printRecipt(transaction);
-				}
+				printPumpTransactions(entry.getKey(), entry.getValue());
 			}
 		} else {
 			System.out.println("No transactions registed.");
 
+		}
+	}
+
+	private void printPumpTransactions(Pump pump, List<Transaction> transactions) {
+		System.out.println("A total of " + transactions.size() + " transactions were made on Pump Number: "
+				+ pump.getId());
+		int transactionNumber = 0;
+		for (Transaction transaction : transactions) {
+			transactionNumber++;
+			System.out.println("Transaction Number: " + transactionNumber);
+			printRecipt(transaction);
 		}
 	}
 
