@@ -62,7 +62,7 @@ public class ServiceStation {
 	public void run() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Welcome to Applegreen service station");
-		System.out.println("This petrol station has " + NUMBER_OF_PUMPS + " pumps that can server unleaded or diesel.");
+		System.out.println("This petrol station has " + NUMBER_OF_PUMPS + " pumps that can serve unleaded or diesel.");
 		while (true) {
 			printMainMenu();
 			int menuOption = scanner.nextInt();
@@ -134,7 +134,7 @@ public class ServiceStation {
 		for (Transaction transaction : transactions) {
 			transactionNumber++;
 			System.out.println("Transaction Number: " + transactionNumber);
-			printRecipt(transaction);
+			System.out.println(transaction);
 		}
 	}
 
@@ -155,7 +155,7 @@ public class ServiceStation {
 			Pump pump = selectPumpForpayment(scanner, pumpsDuePayment);
 			Transaction transaction = kiosk.pay(pump);
 			System.out.println("Printing Recipt:");
-			printRecipt(transaction);
+			System.out.println(transaction);
 		} else {
 			System.out.println("No Pump is due payment");
 		}
@@ -202,10 +202,6 @@ public class ServiceStation {
 		if (pump.getStatus() != PumpStatus.READY) {
 			throw new ValidationException("The selected Pump is not Ready");
 		}
-	}
-
-	private void printRecipt(Transaction transaction) {
-		System.out.println(transaction);
 	}
 
 	private void refuel(Scanner scanner, Pump pump, Nozzle nozzle) throws ValidationException {
