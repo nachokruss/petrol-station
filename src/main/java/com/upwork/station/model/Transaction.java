@@ -2,6 +2,7 @@ package com.upwork.station.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a refuel transaction that has finished and its paid.
@@ -10,6 +11,8 @@ import java.time.LocalDateTime;
  *
  */
 public class Transaction {
+	
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 	private BigDecimal totalAmount;
 	private BigDecimal pricePerLiter;
@@ -59,6 +62,15 @@ public class Transaction {
 
 	public LocalDateTime getDateTime() {
 		return dateTime;
+	}
+	
+	@Override
+	public String toString() {
+		return new StringBuilder("=====================================\n")
+				.append("Date/Time: " + this.getDateTime().format(formatter) + "\n")
+				.append("Type of Fuel: " + this.getFuelType() + "\n")
+				.append("Total Cost: " + this.getTotalAmount() + "\n")
+				.append("=====================================\n").toString();
 	}
 
 }

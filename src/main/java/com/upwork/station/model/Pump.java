@@ -115,12 +115,8 @@ public class Pump {
 		notifyListeners(oldStatus, newStatus);
 	}
 	
-	public BigDecimal getTotalAmountDue() throws ValidationException {
-		if (status == PumpStatus.PAYMENT_DUE && usedNozzle != null) {
-			return usedNozzle.getRefuelAmount();
-		} else {
-			throw new ValidationException("No paymenet is due");
-		}
+	public BigDecimal getTotalAmountDue() {
+		return usedNozzle.getRefuelAmount();
 	}
 
 	private void notifyListeners(PumpStatus oldStatus, PumpStatus newStatus) {
@@ -135,6 +131,22 @@ public class Pump {
 	
 	public Nozzle getUsedNozzle() {
 		return usedNozzle;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("Pump Number: ")
+				.append(this.getId())
+				.append(", State: ")
+				.append(this.getStatus());
+		if (this.getStatus() == PumpStatus.PAYMENT_DUE) {
+			sb.append(", Amount Due: ")
+			.append(this.getTotalAmountDue())
+			.append(", Fuel Type: ")
+			.append(this.getUsedNozzle().getFuelType());
+		}
+		return sb.toString();
+
 	}
 
 }

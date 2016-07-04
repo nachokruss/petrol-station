@@ -140,9 +140,7 @@ public class ServiceStation {
 
 	private void viewPumpsState(Scanner scanner) throws ValidationException {
 		for (Pump pump : pumps) {
-			System.out.println(
-					"Pump Number: " + pump.getId() + ", State: " + pump.getStatus() 
-					+ (pump.getStatus() == PumpStatus.PAYMENT_DUE ? ", Amount Due: " + pump.getTotalAmountDue() + ", Fuel Type: " + pump.getUsedNozzle().getFuelType() : ""));
+			System.out.println(pump);
 		}
 	}
 
@@ -204,16 +202,10 @@ public class ServiceStation {
 		if (pump.getStatus() != PumpStatus.READY) {
 			throw new ValidationException("The selected Pump is not Ready");
 		}
-		
 	}
 
 	private void printRecipt(Transaction transaction) {
-		System.out.println("=====================================");
-		System.out.println("Date/Time: " + transaction.getDateTime());
-		System.out.println("Type of Fuel: " + transaction.getFuelType());
-		System.out.println("Total Cost: " + transaction.getTotalAmount());
-		System.out.println("=====================================");
-
+		System.out.println(transaction);
 	}
 
 	private void refuel(Scanner scanner, Pump pump, Nozzle nozzle) throws ValidationException {
