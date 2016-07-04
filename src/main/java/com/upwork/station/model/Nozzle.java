@@ -65,5 +65,10 @@ public class Nozzle {
 	public BigDecimal getLitersRefuled() {
 		return refuelAmount.divide(pricePerLitre, RoundingMode.HALF_UP);
 	}
+	
+	@Override
+	public String toString() {
+		return this.getId() + " - " + this.getFuelType();
+	}
 
 }

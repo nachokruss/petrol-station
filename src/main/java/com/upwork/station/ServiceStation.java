@@ -213,7 +213,7 @@ public class ServiceStation {
 	private Nozzle liftNozzle(Scanner scanner, Pump pump) throws ValidationException {
 		System.out.println("Enter Nozzle Number to Lift:");
 		for (Nozzle nozzle : pump.getNozzles()) {
-			System.out.println("   " + nozzle.getId() + " - " + nozzle.getFuelType());
+			System.out.println("   " + nozzle);
 		}
 		
 		int nozzleNumber = scanner.nextInt();
