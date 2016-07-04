@@ -152,7 +152,7 @@ public class ServiceStation {
 	private void makePayment(Scanner scanner) throws ValidationException {
 		List<Pump> pumpsDuePayment = getPumpsDuePayment();
 		if (pumpsDuePayment.size() > 0) {
-			Pump pump = selectPumpForpayment(scanner, pumpsDuePayment);
+			Pump pump = selectPumpForPayment(scanner, pumpsDuePayment);
 			Transaction transaction = kiosk.pay(pump);
 			System.out.println("Printing Recipt:");
 			System.out.println(transaction);
@@ -162,7 +162,7 @@ public class ServiceStation {
 
 	}
 
-	private Pump selectPumpForpayment(Scanner scanner, List<Pump> pumpsDuePayment) throws ValidationException {
+	private Pump selectPumpForPayment(Scanner scanner, List<Pump> pumpsDuePayment) throws ValidationException {
 		System.out.println("Select a Pump to make a payment:");
 		for (Pump pump : pumpsDuePayment) {
 			System.out.println("   " + pump.getId() + ": Amount Due: " + pump.getTotalAmountDue());
